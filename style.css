@@ -1,0 +1,306 @@
+:root {
+    --primary-bg: #0f172a;
+    --secondary-bg: #1e293b;
+    --accent-color: #6366f1;
+    --accent-hover: #4f46e5;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --success: #10b981;
+    --danger: #ef4444;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--primary-bg) 0%, #000000 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Background Animated Blobs */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: #6366f1;
+    top: -50px;
+    left: -50px;
+}
+
+body::after {
+    background: #ec4899;
+    bottom: -50px;
+    right: -50px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.2); }
+}
+
+.app-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    z-index: 10;
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.screen {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(20px);
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Start Screen */
+#start-screen {
+    text-align: center;
+}
+
+#start-screen h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#start-screen p {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+/* Common Buttons */
+.primary-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+}
+
+.primary-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.23);
+}
+
+.primary-btn:active {
+    transform: translateY(1px);
+}
+
+.pulse-anim {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(99, 102, 241, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+/* Quiz Screen */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #a855f7);
+    width: 0%;
+    transition: width 0.4s ease;
+    border-radius: 10px;
+}
+
+.question-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.option-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    padding: 16px 20px;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.option-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.option-btn.correct {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.option-btn.wrong {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.option-btn:disabled {
+    cursor: default;
+    opacity: 0.9;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Result Screen */
+.result-content {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.result-content h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.score-display {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+    border: 1px solid var(--glass-border);
+}
+
+.trophy-icon {
+    width: 60px;
+    height: 60px;
+    color: #fbbf24;
+    margin-bottom: 15px;
+}
+
+#final-score {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(to right, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.score-display p {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.feedback-text {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #a855f7;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .glass-panel {
+        padding: 30px 20px;
+    }
+    
+    .question-text {
+        font-size: 1.2rem;
+    }
+    
+    #start-screen h1 {
+        font-size: 2rem;
+    }
+}
