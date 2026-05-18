@@ -1,55 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Quiz App</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="app-container">
-        <div class="quiz-box glass-panel">
-            <div id="start-screen" class="screen active">
-                <h1>Test Your Knowledge</h1>
-                <p>Are you ready to take the quiz?</p>
-                <button id="start-btn" class="primary-btn pulse-anim">Start Quiz</button>
-            </div>
-
-            <div id="quiz-screen" class="screen">
-                <div class="header">
-                    <span class="question-tracker">Question <span id="current-question-num">1</span>/<span id="total-questions-num">5</span></span>
-                    <span class="score-tracker">Score: <span id="score">0</span></span>
-                </div>
-                <div class="progress-bar">
-                    <div id="progress" class="progress"></div>
-                </div>
-                <h2 id="question-text" class="question-text">Question goes here?</h2>
-                <div id="options-container" class="options-container">
-                    <!-- Options will be dynamically injected here -->
-                </div>
-                <div class="footer">
-                    <button id="next-btn" class="primary-btn hidden">Next Question</button>
-                </div>
-            </div>
-
-            <div id="result-screen" class="screen">
-                <div class="result-content">
-                    <h1>Quiz Completed!</h1>
-                    <div class="score-display">
-                        <svg class="trophy-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 16L15.09 17.618L14.5 14.177L17 11.738L13.545 11.236L12 8L10.455 11.236L7 11.738L9.5 14.177L8.91 17.618L12 16Z" fill="currentColor"/>
-                        </svg>
-                        <h2 id="final-score">0</h2>
-                        <p>out of <span id="final-total">5</span></p>
-                    </div>
-                    <p id="feedback-text" class="feedback-text">Great job!</p>
-                    <button id="restart-btn" class="primary-btn">Play Again</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Quiz App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
