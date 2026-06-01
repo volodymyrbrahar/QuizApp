@@ -21,7 +21,8 @@ body {
   background: linear-gradient(135deg, var(--color-primary-bg) 0%, #000000 100%);
   color: theme('colors.slate.50');
   min-height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,4 +82,14 @@ body {
 
 .pulse-anim {
   animation: pulse-glow 2s infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
 }
